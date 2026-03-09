@@ -1,0 +1,10 @@
+{
+  "broker": "B",
+  "account_number": 7369776,
+  "password": "tP6DGS93VCG#",
+  "server": "LiteFinance-MT5-Live",
+  "symbol": "XAUUSD",
+  "mt5_path": "C:/Program Files/MetaTrader 5/terminal64.exe",
+  "host": "91.107.167.51",
+  "port": 9090
+}

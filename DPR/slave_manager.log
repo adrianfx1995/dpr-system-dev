@@ -1,0 +1,22 @@
+[SLAVE-MANAGER] API=http://localhost:3001 ENGINE=127.0.0.1:9090
+[SLAVE-MANAGER] default_mt5_path=C:\Program Files\MetaTrader 5\terminal64.exe
+[SLAVE-MANAGER] started slave=s104 pid=9284 account=494254 route_tag=WingoGroupLtd-Server
+[SLAVE-MANAGER] started slave=s105 pid=8640 account=494257 route_tag=WingoGroupLtd-Server
+[slave-s104-494254] starting route_tag=WingoGroupLtd-Server account=494254 server=WingoGroupLtd-Server symbol=XAUUSD
+[slave-s105-494257] starting route_tag=WingoGroupLtd-Server account=494257 server=WingoGroupLtd-Server symbol=EURUSD
+[slave-s105-494257] MT5 init/login failed: (-10003, "IPC initialize failed, Process create failed 'C:\\Program Files\\ePlanet MetaTrader 5 Terminal'")
+[slave-s104-494254] MT5 connected login=494254 server=WingoGroupLtd-Server trade_allowed=True
+[slave-s105-494257] TRADE_ERROR symbol_select failed XAUUSD
+[slave-s104-494254] COPY_OPEN ok masterTicket=16557997 action=SELL lot=0.01 XAUUSD
+[slave-s105-494257] TRADE_ERROR symbol_select failed XAUUSD
+[slave-s104-494254] COPY_CLOSE ok masterTicket=16557997 vol=0.01
+[slave-s104-494254] COPY_OPEN ok masterTicket=16558001 action=BUY lot=0.01 XAUUSD
+[slave-s104-494254] COPY_CLOSE ok masterTicket=16558001 vol=0.01
+[SLAVE-MANAGER] restarting slave s105
+[SLAVE-MANAGER] started slave=s105 pid=12688 account=494257 route_tag=WingoGroupLtd-Server
+[slave-s105-494257] starting route_tag=WingoGroupLtd-Server account=494257 server=WingoGroupLtd-Server symbol=EURUSD
+[slave-s105-494257] MT5 init/login failed: (-10005, 'IPC timeout')
+[SLAVE-MANAGER] restarting slave s105
+[SLAVE-MANAGER] started slave=s105 pid=7676 account=494257 route_tag=WingoGroupLtd-Server
+[slave-s105-494257] starting route_tag=WingoGroupLtd-Server account=494257 server=WingoGroupLtd-Server symbol=EURUSD
+[slave-s105-494257] MT5 init/login failed: (-10005, 'IPC timeout')

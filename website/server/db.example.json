@@ -1,0 +1,23 @@
+{
+  "masterAccounts": [
+    {
+      "id": "m100",
+      "name": "Master Account Name",
+      "accountNumber": "12345678",
+      "masterPass": "your-mt5-password",
+      "broker": "BrokerName-Live",
+      "currency": "USD",
+      "balance": 0,
+      "equity": 0,
+      "margin": 0,
+      "freeMargin": 0,
+      "pnl": 0,
+      "totalPnl": 0,
+      "status": "active",
+      "slaveCount": 0,
+      "createdAt": "2026-01-01",
+      "lastUpdated": "2026-01-01"
+    }
+  ],
+  "slaveAccounts": []
+}

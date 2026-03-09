@@ -1,0 +1,6 @@
+node_modules/
+website/dist/
+run-logs/
+*.pyc
+__pycache__/
+.env

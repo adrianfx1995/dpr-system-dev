@@ -1,0 +1,308 @@
+[TCP] EA listener running on port 9090
+[HTTP] DPR Engine API running on port 3001
+[INFO] DB path: C:\Users\Administrator\Desktop\TEST\website\server\db.json
+[TCP] New connection from ::ffff:127.0.0.1:55125
+[TCP ←] ::ffff:127.0.0.1:55125 | WingoGroupLtd-Server-494123
+[TCP] EA connected id=WingoGroupLtd-Server-494123
+[TCP ←] WingoGroupLtd-Server-494123 | BROKER WingoGroupLtd-Server
+[TCP] id=WingoGroupLtd-Server-494123 registered tag=WINGOGROUPLTD-SERVER peers=1
+[TCP ←] WingoGroupLtd-Server-494123 | BIND {"kind": "master", "id": "m103"}
+[TCP] id=WingoGroupLtd-Server-494123 bound master:m103
+[TCP ←] WingoGroupLtd-Server-494123 | STATUS {"state": "connected", "message": "Connected"}
+[STATUS] master:m103 state=connected message=Connected
+[TCP] New connection from ::ffff:127.0.0.1:55127
+[TCP ←] ::ffff:127.0.0.1:55127 | slave-s104-494254
+[TCP] EA connected id=slave-s104-494254
+[TCP ←] slave-s104-494254 | BROKER WingoGroupLtd-Server
+[TCP] id=slave-s104-494254 registered tag=WINGOGROUPLTD-SERVER peers=2
+[TCP ←] slave-s104-494254 | BIND {"kind": "slave", "id": "s104"}
+[TCP] id=slave-s104-494254 bound slave:s104
+[TCP ←] slave-s104-494254 | STATUS {"state": "connecting", "message": "Connecting to MT5..."}
+[STATUS] slave:s104 state=connecting message=Connecting to MT5...
+[TCP] New connection from ::ffff:127.0.0.1:55128
+[TCP ←] ::ffff:127.0.0.1:55128 | slave-s105-494257
+[TCP] EA connected id=slave-s105-494257
+[TCP ←] slave-s105-494257 | BROKER WingoGroupLtd-Server
+[TCP] id=slave-s105-494257 registered tag=WINGOGROUPLTD-SERVER peers=3
+[TCP ←] slave-s105-494257 | BIND {"kind": "slave", "id": "s105"}
+[TCP] id=slave-s105-494257 bound slave:s105
+[TCP ←] slave-s105-494257 | STATUS {"state": "connecting", "message": "Connecting to MT5..."}
+[STATUS] slave:s105 state=connecting message=Connecting to MT5...
+[TCP ←] slave-s105-494257 | STATUS {"state": "error", "message": "MT5 init/login failed: (-10003, \"IPC initialize failed, Process create failed 'C:\\\\Program Files\\\\ePlanet MetaTrader 5 Terminal'\")"}
+[STATUS] slave:s105 state=error message=MT5 init/login failed: (-10003, "IPC initialize failed, Process create failed 'C:\\Program Files\\ePlanet MetaTrader 5 Terminal'")
+[TCP ←] slave-s104-494254 | STATUS {"state": "connected", "message": "Connected"}
+[STATUS] slave:s104 state=connected message=Connected
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 60.56, "margin": 0.0, "freeMargin": 60.56, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.85, "equity": 87.85, "margin": 0.0, "freeMargin": 87.85, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | SIGNAL {"kind": "reverse_copy", "op": "open", "masterTicket": 16557997, "symbol": "XAUUSD", "action": "SELL", "lot": 0.01}
+[COPY] tag=WINGOGROUPLTD-SERVER from=m103 sent_to_slaves=2 payload={"kind":"reverse_copy","op":"open","masterTicket":16557997,"symbol":"XAUUSD","action":"SELL","lot":0.01}
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.56, "equity": 59.97, "margin": 10.18, "freeMargin": 49.79, "pnl": -0.59}
+[ENGINE] db updated for master:m103
+[TCP ←] WingoGroupLtd-Server-494123 | SIGNAL {"kind": "reverse_copy", "op": "close", "masterTicket": 16557997}
+[COPY] tag=WINGOGROUPLTD-SERVER from=m103 sent_to_slaves=2 payload={"kind":"reverse_copy","op":"close","masterTicket":16557997}
+[TCP ←] WingoGroupLtd-Server-494123 | SIGNAL {"kind": "reverse_copy", "op": "open", "masterTicket": 16558001, "symbol": "XAUUSD", "action": "BUY", "lot": 0.01}
+[COPY] tag=WINGOGROUPLTD-SERVER from=m103 sent_to_slaves=2 payload={"kind":"reverse_copy","op":"open","masterTicket":16558001,"symbol":"XAUUSD","action":"BUY","lot":0.01}
+[TCP ←] WingoGroupLtd-Server-494123 | SIGNAL {"kind": "reverse_copy", "op": "close", "masterTicket": 16558001}
+[COPY] tag=WINGOGROUPLTD-SERVER from=m103 sent_to_slaves=2 payload={"kind":"reverse_copy","op":"close","masterTicket":16558001}
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP] Error id=slave-s105-494257: read ECONNRESET
+[TCP] New connection from ::ffff:127.0.0.1:55178
+[TCP ←] ::ffff:127.0.0.1:55178 | slave-s105-494257
+[TCP] EA connected id=slave-s105-494257
+[TCP ←] slave-s105-494257 | BROKER WingoGroupLtd-Server
+[TCP] id=slave-s105-494257 registered tag=WINGOGROUPLTD-SERVER peers=3
+[TCP ←] slave-s105-494257 | BIND {"kind": "slave", "id": "s105"}
+[TCP] id=slave-s105-494257 bound slave:s105
+[TCP ←] slave-s105-494257 | STATUS {"state": "connecting", "message": "Connecting to MT5..."}
+[STATUS] slave:s105 state=connecting message=Connecting to MT5...
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s105-494257 | STATUS {"state": "error", "message": "MT5 init/login failed: (-10005, 'IPC timeout')"}
+[STATUS] slave:s105 state=error message=MT5 init/login failed: (-10005, 'IPC timeout')
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP] Error id=slave-s105-494257: read ECONNRESET
+[TCP] New connection from ::ffff:127.0.0.1:55196
+[TCP ←] ::ffff:127.0.0.1:55196 | slave-s105-494257
+[TCP] EA connected id=slave-s105-494257
+[TCP ←] slave-s105-494257 | BROKER WingoGroupLtd-Server
+[TCP] id=slave-s105-494257 registered tag=WINGOGROUPLTD-SERVER peers=3
+[TCP ←] slave-s105-494257 | BIND {"kind": "slave", "id": "s105"}
+[TCP] id=slave-s105-494257 bound slave:s105
+[TCP ←] slave-s105-494257 | STATUS {"state": "connecting", "message": "Connecting to MT5..."}
+[STATUS] slave:s105 state=connecting message=Connecting to MT5...
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s105-494257 | STATUS {"state": "error", "message": "MT5 init/login failed: (-10005, 'IPC timeout')"}
+[STATUS] slave:s105 state=error message=MT5 init/login failed: (-10005, 'IPC timeout')
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
+[TCP ←] slave-s104-494254 | DATA {"balance": 87.31, "equity": 87.31, "margin": 0.0, "freeMargin": 87.31, "pnl": 0}
+[ENGINE] db updated for slave:s104
+[TCP ←] WingoGroupLtd-Server-494123 | DATA {"balance": 60.05, "equity": 60.05, "margin": 0.0, "freeMargin": 60.05, "pnl": 0}
+[ENGINE] db updated for master:m103
