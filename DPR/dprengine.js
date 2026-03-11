@@ -15,6 +15,7 @@ const express = require('express');
 const cors    = require('cors');
 const fs      = require('fs');
 const path    = require('path');
+const { spawn } = require('child_process');
 
 // ── Config ───────────────────────────────────────────────────
 const HTTP_PORT = 3001;
@@ -25,6 +26,91 @@ const DB_PATH   = path.resolve(__dirname, '../website/server/db.json');
 function readDb()       { return JSON.parse(fs.readFileSync(DB_PATH, 'utf-8')); }
 function writeDb(data)  { fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8'); }
 function today()        { return new Date().toISOString().split('T')[0]; }
+function normalizeMt5Path(value) {
+    if (typeof value !== 'string') return '';
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    try { return path.normalize(trimmed); }
+    catch (_e) { return trimmed; }
+}
+function mt5PathKey(value) { return normalizeMt5Path(value).toLowerCase(); }
+function safePathExists(mt5Path) {
+    try { return fs.existsSync(mt5Path); }
+    catch (_e) { return false; }
+}
+function allAccountRefs(db) {
+    const masters = (db.masterAccounts || []).map((m) => ({
+        kind: 'master',
+        id: String(m.id),
+        name: m.name || '',
+        mt5Path: m.mt5Path || '',
+    }));
+    const slaves = (db.slaveAccounts || []).map((s) => ({
+        kind: 'slave',
+        id: String(s.id),
+        name: s.name || '',
+        mt5Path: s.mt5Path || '',
+    }));
+    return [...masters, ...slaves];
+}
+function findMt5PathConflict(db, mt5Path, exclude = null) {
+    const key = mt5PathKey(mt5Path);
+    if (!key) return null;
+    return allAccountRefs(db).find((rec) => {
+        if (exclude && rec.kind === exclude.kind && String(rec.id) === String(exclude.id)) {
+            return false;
+        }
+        return mt5PathKey(rec.mt5Path) === key;
+    }) || null;
+}
+function validateUniqueMt5Path(db, mt5Path, exclude = null) {
+    const normalized = normalizeMt5Path(mt5Path);
+    if (!normalized) {
+        return { error: 'mt5Path is required' };
+    }
+
+    const conflict = findMt5PathConflict(db, normalized, exclude);
+    if (conflict) {
+        return {
+            error: `mt5Path "${normalized}" is already assigned to ${conflict.kind}:${conflict.id}${conflict.name ? ` (${conflict.name})` : ''}`,
+            conflict: { ...conflict, mt5Path: normalizeMt5Path(conflict.mt5Path) },
+        };
+    }
+    return { mt5Path: normalized };
+}
+function buildMt5PathWarnings(db) {
+    const missingPaths = [];
+    const duplicatePaths = [];
+    const unavailablePaths = [];
+    const byPath = new Map();
+
+    allAccountRefs(db).forEach((rec) => {
+        const normalized = normalizeMt5Path(rec.mt5Path);
+        const entry = { kind: rec.kind, id: rec.id, name: rec.name, mt5Path: normalized };
+
+        if (!normalized) {
+            missingPaths.push(entry);
+            return;
+        }
+
+        if (!safePathExists(normalized)) {
+            unavailablePaths.push(entry);
+        }
+
+        const key = mt5PathKey(normalized);
+        const bucket = byPath.get(key) || [];
+        bucket.push(entry);
+        byPath.set(key, bucket);
+    });
+
+    byPath.forEach((accounts, key) => {
+        if (accounts.length > 1) {
+            duplicatePaths.push({ mt5Path: accounts[0].mt5Path || key, accounts });
+        }
+    });
+
+    return { missingPaths, duplicatePaths, unavailablePaths };
+}
 
 // ── TCP state ────────────────────────────────────────────────
 const clientsByTag = new Map();   // tag (broker) => Set<socket>
@@ -441,21 +527,58 @@ app.use(cors());
 app.use(express.json());
 
 // ── Data ─────────────────────────────────────────────────────
-app.get('/api/data', (_req, res) => res.json(readDb()));
+app.get('/api/data', (_req, res) => {
+    const db = readDb();
+    res.json({ ...db, mt5PathWarnings: buildMt5PathWarnings(db) });
+});
+
+// Check if the MT5 path exists on the engine host machine
+app.post('/api/mt5-path/check', (req, res) => {
+    const mt5Path = normalizeMt5Path(req.body?.mt5Path);
+    if (!mt5Path) return res.status(400).json({ error: 'mt5Path is required' });
+
+    const exists = safePathExists(mt5Path);
+    let isFile = false;
+    if (exists) {
+        try { isFile = fs.statSync(mt5Path).isFile(); }
+        catch (_e) { isFile = false; }
+    }
+
+    res.json({ mt5Path, exists, isFile });
+});
 
 // ── Masters ──────────────────────────────────────────────────
 app.post('/api/masters', (req, res) => {
     const db = readDb();
-    db.masterAccounts.push(req.body);
+    const validation = validateUniqueMt5Path(db, req.body?.mt5Path);
+    if (validation.error) {
+        const code = validation.conflict ? 409 : 400;
+        return res.status(code).json({ error: validation.error, conflict: validation.conflict || null });
+    }
+    const master = { ...req.body, mt5Path: validation.mt5Path };
+    db.masterAccounts.push(master);
     writeDb(db);
-    res.json(req.body);
+    res.json(master);
 });
 
 app.put('/api/masters/:id', (req, res) => {
     const db  = readDb();
     const idx = db.masterAccounts.findIndex((m) => m.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Not found' });
-    db.masterAccounts[idx] = { ...db.masterAccounts[idx], ...req.body, lastUpdated: today() };
+    const current = db.masterAccounts[idx];
+    const hasMt5Path = Object.prototype.hasOwnProperty.call(req.body || {}, 'mt5Path');
+    const requestedPath = hasMt5Path ? req.body.mt5Path : current.mt5Path;
+    const validation = validateUniqueMt5Path(db, requestedPath, { kind: 'master', id: current.id });
+    if (validation.error) {
+        const code = validation.conflict ? 409 : 400;
+        return res.status(code).json({ error: validation.error, conflict: validation.conflict || null });
+    }
+    db.masterAccounts[idx] = {
+        ...current,
+        ...req.body,
+        mt5Path: validation.mt5Path,
+        lastUpdated: today(),
+    };
     writeDb(db);
     res.json(db.masterAccounts[idx]);
 });
@@ -473,7 +596,18 @@ app.post('/api/masters/:id/activate', (req, res) => {
     const db = readDb();
     const idx = db.masterAccounts.findIndex((m) => m.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Not found' });
-    db.masterAccounts[idx] = { ...db.masterAccounts[idx], status: 'active', lastUpdated: today() };
+    const current = db.masterAccounts[idx];
+    const validation = validateUniqueMt5Path(db, current.mt5Path, { kind: 'master', id: current.id });
+    if (validation.error) {
+        const code = validation.conflict ? 409 : 400;
+        return res.status(code).json({ error: validation.error, conflict: validation.conflict || null });
+    }
+    db.masterAccounts[idx] = {
+        ...current,
+        mt5Path: validation.mt5Path,
+        status: 'active',
+        lastUpdated: today(),
+    };
     writeDb(db);
     res.json({ success: true });
 });
@@ -481,16 +615,35 @@ app.post('/api/masters/:id/activate', (req, res) => {
 // ── Slaves ───────────────────────────────────────────────────
 app.post('/api/slaves', (req, res) => {
     const db = readDb();
-    db.slaveAccounts.push(req.body);
+    const validation = validateUniqueMt5Path(db, req.body?.mt5Path);
+    if (validation.error) {
+        const code = validation.conflict ? 409 : 400;
+        return res.status(code).json({ error: validation.error, conflict: validation.conflict || null });
+    }
+    const slave = { ...req.body, mt5Path: validation.mt5Path };
+    db.slaveAccounts.push(slave);
     writeDb(db);
-    res.json(req.body);
+    res.json(slave);
 });
 
 app.put('/api/slaves/:id', (req, res) => {
     const db  = readDb();
     const idx = db.slaveAccounts.findIndex((s) => s.id === req.params.id);
     if (idx === -1) return res.status(404).json({ error: 'Not found' });
-    db.slaveAccounts[idx] = { ...db.slaveAccounts[idx], ...req.body, lastUpdated: today() };
+    const current = db.slaveAccounts[idx];
+    const hasMt5Path = Object.prototype.hasOwnProperty.call(req.body || {}, 'mt5Path');
+    const requestedPath = hasMt5Path ? req.body.mt5Path : current.mt5Path;
+    const validation = validateUniqueMt5Path(db, requestedPath, { kind: 'slave', id: current.id });
+    if (validation.error) {
+        const code = validation.conflict ? 409 : 400;
+        return res.status(code).json({ error: validation.error, conflict: validation.conflict || null });
+    }
+    db.slaveAccounts[idx] = {
+        ...current,
+        ...req.body,
+        mt5Path: validation.mt5Path,
+        lastUpdated: today(),
+    };
     writeDb(db);
     res.json(db.slaveAccounts[idx]);
 });
@@ -558,6 +711,84 @@ app.post('/api/command', (req, res) => {
     res.json({ success: true, masterId: master.id, sent, payload });
 });
 
+// ── Process Manager ───────────────────────────────────────────
+const DPR_DIR = __dirname;
+const PY_CMD  = process.platform === 'win32' ? 'python' : 'python3';
+
+const MANAGED = [
+    { name: 'master-ea-manager', cmd: PY_CMD, args: ['dpr_ea.py'],          cwd: DPR_DIR },
+    { name: 'slave-ea-manager',  cmd: PY_CMD, args: ['slave_ea_manager.py'], cwd: DPR_DIR },
+];
+
+const processRegistry = new Map();
+// entry shape: { proc, status, pid, restartCount, startedAt, lastRestartAt, alerts[] }
+
+function pushAlert(name, message) {
+    const r = processRegistry.get(name);
+    if (!r) return;
+    r.alerts.unshift({ time: new Date().toISOString(), message });
+    if (r.alerts.length > 20) r.alerts.length = 20;
+}
+
+let _shuttingDown = false;
+
+function spawnManaged(name) {
+    if (_shuttingDown) return;
+    const def = MANAGED.find((m) => m.name === name);
+    if (!def) return;
+
+    const r = processRegistry.get(name);
+    r.status    = 'running';
+    r.startedAt = new Date().toISOString();
+
+    const proc = spawn(def.cmd, def.args, { cwd: def.cwd, stdio: 'inherit' });
+    r.proc = proc;
+    r.pid  = proc.pid;
+    console.log(`[MANAGER] Started ${name} pid=${proc.pid}`);
+
+    proc.on('exit', (code, signal) => {
+        if (_shuttingDown) return;
+        const rec = processRegistry.get(name);
+        if (!rec) return;
+        const msg = `${name} exited (code=${code} signal=${signal}) — restarting in 3s`;
+        console.warn(`[MANAGER] ${msg}`);
+        pushAlert(name, msg);
+        rec.status        = 'restarting';
+        rec.proc          = null;
+        rec.pid           = null;
+        rec.restartCount++;
+        rec.lastRestartAt = new Date().toISOString();
+        setTimeout(() => spawnManaged(name), 3000);
+    });
+}
+
+// GET /api/system/status
+app.get('/api/system/status', (_req, res) => {
+    const result = [];
+    processRegistry.forEach((r, name) => {
+        result.push({
+            name,
+            status:        r.status,
+            pid:           r.pid || null,
+            restartCount:  r.restartCount,
+            startedAt:     r.startedAt,
+            lastRestartAt: r.lastRestartAt,
+            alerts:        r.alerts.slice(0, 10),
+        });
+    });
+    res.json(result);
+});
+
+// POST /api/system/restart/:name
+app.post('/api/system/restart/:name', (req, res) => {
+    const name = req.params.name;
+    const r = processRegistry.get(name);
+    if (!r) return res.status(404).json({ error: 'Unknown process' });
+    pushAlert(name, 'Manual restart triggered');
+    if (r.proc) { try { r.proc.kill(); } catch (_e) {} }
+    res.json({ success: true });
+});
+
 // ── Connections: which EAs are live right now ─────────────────
 app.get('/api/connections', (_req, res) => {
     const connections = getConnections();
@@ -574,3 +805,25 @@ app.listen(HTTP_PORT, () => {
 // ── Resilience ────────────────────────────────────────────────
 process.on('uncaughtException',  (e) => console.error('[UNCAUGHT]',  e));
 process.on('unhandledRejection', (e) => console.error('[UNHANDLED]', e));
+
+// ── Start managed sub-processes ───────────────────────────────
+MANAGED.forEach((m) => {
+    processRegistry.set(m.name, {
+        proc: null, status: 'stopped', pid: null,
+        restartCount: 0, startedAt: null, lastRestartAt: null, alerts: [],
+    });
+    spawnManaged(m.name);
+});
+
+// ── Graceful shutdown ─────────────────────────────────────────
+function shutdownAll() {
+    _shuttingDown = true;
+    processRegistry.forEach((r, name) => {
+        if (r.proc) {
+            console.log(`[MANAGER] Stopping ${name} pid=${r.proc.pid}`);
+            try { r.proc.kill(); } catch (_e) {}
+        }
+    });
+}
+process.on('SIGINT',  () => { shutdownAll(); process.exit(0); });
+process.on('SIGTERM', () => { shutdownAll(); process.exit(0); });
